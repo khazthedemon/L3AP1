@@ -2,6 +2,10 @@
 *E dai tive essa ideia de recursividade da função e quis tentar
 */
 #include <stdio.h>
+#include <math.h>	
+
+#define RAD 3.14159265/180.0
+
 unsigned long long int fact(unsigned long long int k);
 
 int main(){
@@ -12,20 +16,29 @@ int main(){
 
 	scanf("%f",&x);
 
+	x*=RAD;
+
 	for(ite=0,sum=1;ite<=38;){
 		
-		if(ite==0) ite+=2;
+		if(ite==0) sum=1;
 		else{
-			tmp=x*x;
-			tmp/=fact(ite);
-			sum+=tmp;		
+			if(ite%2==0){
+				tmp=x*x;
+				tmp/=fact(ite);
+				sum-=tmp;		
+			}else{
+				tmp=x*x;
+				tmp/=fact(ite);
+				sum+=tmp;
+			}
 		}
 		ite++;
 		ite++;
 	}
 
-	printf("\nO somatorio eh igual a: %f\n",sum);
-
+	printf("\na) O somatorio eh igual a: %f\n",sum);
+	printf("b) O valor da diferenca eh: %lf\n",(sum-cos(x)));
+	printf("c) O valor de COS(x): %lf\n",cos(x));
 	return 0;
 }
 
